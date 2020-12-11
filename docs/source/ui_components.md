@@ -1,18 +1,18 @@
 # User Interface Components
 
-One of the main advantages to porting a machine learning model to Runway is that you don't have to spend time designing and building a user interface for users to interact with your model. The Model SDK, in tandem with Runway itself, works to abstract away the details of *how* users get data into and out of a model. As a model porter, you design your model commands, inputs, and outputs using simple [Data Types](data_types.html) which get automatically transformed into UI components inside the app. You don't have to worry about where the data comes from or where it goes once you process it; Runway takes care of that for you.
+One of the main advantages to porting a machine learning model to Runway is that <span class='important'>you don't have to spend time designing and building a user interface</span> for users to interact with your model. The Model SDK, in tandem with Runway itself, works to <span class='important'>abstract away the details of *how* users get data into and out of a model</span>. As a model porter, you design your model commands, inputs, and outputs using simple [Data Types](data_types.html) which get <span class='important'>automatically transformed into UI components</span> inside the app. <span class='important'>You don't have to worry about <span class='bold'>where the data comes from</span> or <span class='bold'>where it goes once you process it</span></span>; Runway takes care of that for you.
 
-This abstraction process also unifies the user experience. Once a user learns how to use their camera to process a live video feed, select an input file from disk, or export the output of a model to CSV, they now know how to do these things with all models; They don't have to re-learn the process for each model.
+This abstraction process also <span class='important'>unifies the user experience</span>. Once a user learns how to use their camera to process a live video feed, select an input file from disk, or export the output of a model to CSV, they now know how to do these things with all models; They don't have to re-learn the process for each model.
 
 ## Workspace View
 
 ![Runway Workspace View](_static/images/ui_components_app_screenshot_1.jpg)
 
-Users interact with your model by adding it to a workspace. From there they are able to chose input and output sources based on the [Data Types](data_types.html) the model porter specifies in each `@runway.command()` decorator (more on the Runway module [here](runway_module.html)).
+<span class='important'>Users interact with your model by adding it to a <span class='definition'>workspace</span></span>. From there they are able to <span class='important'>chose input and output sources</span> based on the [Data Types](data_types.html) the <span class='important'>model porter specifies</span> in each `@runway.command()` decorator (more on the Runway module [here](runway_module.html)).
 
-The screenshot above depicts an example of [OpenAI's Glow model](https://openai.com/blog/glow/) which manipulates facial features of images containing faces. The Glow model that's been ported to Runway expects an `image` as input accompanied by a facial `feature` category like "Young", "Gray_Hair", or "Smiling" and an `amount` that controls the intensity of the transformation. You will see all three of these inputs listed as "Inference Options" on the right UI control panel. Inference options can be controlled by the user while the model is running (see [Setup Options vs Inference Options](#model-setup-options-vs-inference-options) below).
+The screenshot above depicts an example of [OpenAI's Glow model](https://openai.com/blog/glow/) which manipulates facial features of images containing faces. The Glow model that's been ported to Runway expects an <span class='important'>`image`</span> as input accompanied by a facial `feature` <span class='important'>category</span> like "Young", "Gray_Hair", or "Smiling" and an `amount` that controls the intensity of the transformation. You will see all three of these inputs listed as "Inference Options" on the right UI control panel. Inference options can be controlled by the user <span class='important'>while the model is running</span> (see [Setup Options vs Inference Options](#model-setup-options-vs-inference-options) below).
 
-Each model's Inference Options UI panel is automatically generated based on the code in its `runway_model.py` file. The model porter controls which types of UI components are used for each model using only the `inputs` and `outputs` keyword arguments to each `@runway.command()`. Below is a toy example of what the `runway_model.py` code that generates the UI components looks like for Glow. This code is used for illustrative purposes. Click [here](https://github.com/agermanidis/glow/blob/master/demo/runway_model.py) to see the actual code for the Glow model in Runway.
+Each model's Inference Options UI panel is <span class='important'>automatically generated</span> based on the code in its `runway_model.py` file. The model porter controls which types of UI components are used for each model using only the `inputs` and `outputs` keyword arguments to each `@runway.command()`. Below is a toy example of what the `runway_model.py` code that generates the UI components looks like for Glow. This code is used for illustrative purposes. Click [here](https://github.com/agermanidis/glow/blob/master/demo/runway_model.py) to see the actual code for the Glow model in Runway.
 
 ```python
 import runway
@@ -47,7 +47,7 @@ def manipulate(model, args):
 
 ## Input Sources and Output Destinations
 
-Model porters define the types of input a model receives and the types of output a model produces, but they **do not** define the sources of those inputs or the destinations for those outputs. When a user runs a model that accepts an image as input and produces another image as output **the user** choses where that image comes from before it's sent to the model and where it goes once the model produces a new image as output. This concept applies to all data types, not just images.
+Model porters define the types of input a model receives and the types of output a model produces, but <span class='important'>they **do not** define the sources of those inputs</span> or <span class='important'>the destinations for those outputs</span>. When a user runs a model that accepts an image as input and produces another image as output <span class='important'>**the user** choses where that image comes from</span> before it's sent to the model and <span class='important'>where it goes</span> once the model produces a new image as output. This concept applies to all data types, not just images.
 
 ### Input Sources
 
@@ -55,8 +55,8 @@ Model porters define the types of input a model receives and the types of output
 * **Text**: A simple text area box for typing or pasting text based input.
 * **Vector**: A fixed-width z-vector of floats used as the seed for some generative models like StyleGAN
 * **Segmentation**: A drawing tool for creating images composed of objects that represent semantic classes. See SPADE-COCO for an example of this input source.
-* **File**: File is unique because it's used to load files from disk in a uniform way across all [Data Types](data_types.html). This input source is used to feed a model input from your filesystem.
-* **From Network**: This input source is also unique in that it appears whenever you [interact with a model via the network](https://docs.runwayml.com/#/how-to/network). This input source is available for all models but only appears once model a model has been triggered by a network request.
+* **File**: File is <span class='important'>unique</span> because it's used to load files from disk in a uniform way <span class='important'>across all [Data Types](data_types.html)</span>. This input source is used to feed a model input from your filesystem.
+* **From Network**: This input source is also unique in that it appears whenever you [interact with a model via the network](https://docs.runwayml.com/#/how-to/network). This input source is available for all models but only appears once<span class='error' data-replacement='' data-comment='remove'> model</span> a model has been triggered by a network request.
 
 ```eval_rst
 .. note::
@@ -70,7 +70,7 @@ Model porters define the types of input a model receives and the types of output
 
 ## Model Setup Options vs Inference Options
 
-The data types specified in the `options` keyword argument of `@runway.setup()` and the `inputs` keyword arguments of `@runway.command()` functions are handled somewhat differently by Runway. The former defines options that a user configures **before** the model is started, while the later can be adjusted at any time while the model is running.
+The data types specified in the `options` keyword argument of `@runway.setup()` and the `inputs` keyword arguments of `@runway.command()` functions are handled somewhat differently by Runway. The former defines options that a user configures **before** the model is started, while the later can be <span class='important'>adjusted at any time while the model is running</span>.
 
 ```python
 import runway
@@ -96,7 +96,7 @@ def generate(model, opts):
   return model.generate_image(opts['render_factor'])
 ```
 
-As a model porter you must decide which of the options that are configurable by the user should be setup options and which should be inference options. A good rule of thumb is that if an option is needed to load or initialize a model it should be a setup option. Otherwise it should be an inference option.
+As a model porter you must decide which of the options that are configurable by the user should be setup options and which should be inference options. A good <span class='important'>rule of thumb</span> is that if an option is needed to load or initialize a model it should be a setup option. Otherwise it should be an inference option.
 
 <img src="_static/images/ui_components_screenshot_model_options_panel.png" style="max-width: 400px; display: block; margin: auto;">
 
@@ -107,7 +107,7 @@ As a model porter you must decide which of the options that are configurable by 
 
 ## UI Components
 
-Only a limited set of all [Data Types](data_types.html) generate UI components at this time. We are working quickly to render all data types in the app, but we ask for your patience until this task is complete. If you have any questions about data types, UI components, or the Model SDK in general feel free to bring them up in the `#model-sdk` channel in [the public Runway slack](https://runwayml.com/joinslack).
+Only a limited set of all [Data Types](data_types.html) generate <span class='definition'>UI components</span> at this time. <span class='important'>We are working</span> quickly to render all data types in the app, but we ask for your patience until this task is complete. If you have any questions about data types, UI components, or the Model SDK in general feel free to bring them up in <span class='important'>the `#model-sdk` channel</span> in [the public Runway slack](https://runwayml.com/joinslack).
 
 ### Support/Compatibility Matrix
 

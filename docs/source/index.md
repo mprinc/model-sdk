@@ -2,11 +2,11 @@
 
 <a href="https://runwayml.com/joinslack"><img src="https://img.shields.io/badge/slack-runwayml.slack.com-33b279.svg"></a>
 
-These documents serve as a reference for the [Runway](https://runwayml.com) Model SDK. With a few lines of code, you can port existing ML models to the Runway platform so they can be used and shared by others.
+These documents serve as a reference for the <span class='definition'>[Runway](https://runwayml.com) Model SDK</span>. <span class='important'>With a few lines of code, you can port existing ML models to the Runway platform so they can be used and shared by others</span>.
 
 ## Installing
 
-This SDK supports both Python 3.6+. You can install the module using either `pip` or `pip3` like so:
+This SDK supports <span class='error' data-replacement='both Python 2.7+ and Python 3.6+' data-comment=''>both Python 3.6+</span>. You can install the module using either `pip` or `pip3` like so:
 
 ```bash
 pip3 install runway-python
@@ -23,9 +23,9 @@ A Runway model consists of two special files:
 
 ### Example `runway_model.py`
 
-Runway models expose a standard interface that allows the Runway app to interact with them over HTTP. This is accomplished using three functions: `@runway.setup()`, `@runway.command()`, and `runway.run()`.
+Runway models expose a <span class='important'>standard interface</span> that allows the Runway app to interact with them <span class='important'>over HTTP</span>. This is <span class='important'>accomplished using three functions</span>: `@runway.setup()`, `@runway.command()`, and `runway.run()`.
 
-Any Python-based model, independent of the ML framework or toolkit, can be converted into a Runway model using this simple interface. For more information about the `runway` module, see the [module reference](runway_module.html) page.
+<span class='important'>Any Python-based model</span>, independent of the ML framework or toolkit, can be converted into a Runway model using this simple interface. For more information about the `runway` module, see the [module reference](runway_module.html) page.
 
 ```eval_rst
 .. note::
@@ -33,6 +33,7 @@ Any Python-based model, independent of the ML framework or toolkit, can be conve
     run, as the ``your_image_generation_model`` import is not a real python
     module.
 ```
+<span class='error' data-replacement='def generate(model, input_args)' data-comment="the input parameter doesn't have image, but output?!"></span>
 
 ```python
 import runway
@@ -74,11 +75,11 @@ if __name__ == '__main__':
     runway.run(host='0.0.0.0', port=9000, model_options={ 'model_size': 'big' })
 ```
 
-If you are looking to port your own model, we recommend starting from our [Model Template](https://github.com/runwayml/model-template) repository hosted on GitHub. This repository contains a basic model that you can use as boilerplate instead of having to start from scratch.
+If you are looking to port your own model, we recommend <span class='important'>starting from</span> our [Model Template](https://github.com/runwayml/model-template) repository hosted on GitHub. This repository contains <span class='important'>a basic model that you can use as boilerplate</span> instead of having to start from scratch.
 
 ### Example `runway.yml`
 
-Each Runway model must have a `runway.yml` configuration file in its root directory. This file defines the steps needed to build and run your model for use with the Runway app. This file is written in YAML, a human-readable superset of JSON. Below is an example `runway.yml` file. This example file illustrates how you can provision your model's environment.
+Each Runway model must have a <span class='definition'>`runway.yml` configuration file</span> in its root directory. This file defines the <span class='important'>steps needed to build and run your model</span> for use with the Runway app. This file is written in YAML, a human-readable <span class='error' data-replacement='format similar (but more powerfull)' data-comment='it looks like it is an extension, like JSON-LD or similar'>superset</span> of JSON. Below is an example `runway.yml` file. This example file illustrates how you can provision your model's environment.
 
 ```yaml
 version: 0.1
@@ -94,7 +95,7 @@ build_steps:
     - pip install -r requirements.txt
 ```
 
-Continue on to the [Runway YAML reference page](runway_yaml_file.html) to learn more about the possible configuration values supported by the `runway.yml` file, or hop over to the [Example Models](example_models.html) page to check out the source code for some of the models that have already been ported to Runway.
+Continue on to the [Runway YAML reference page](runway_yaml_file.html) to learn more about the <span class='important'>possible configuration values</span> supported by the `runway.yml` file, or hop over to the [Example Models](example_models.html) page to check out the source code for some of the <span class='important'>models that have already been ported to Runway</span>.
 
 <!-- http://www.sphinx-doc.org/en/1.5/markup/toctree.html -->
 ```eval_rst
